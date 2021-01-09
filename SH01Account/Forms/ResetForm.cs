@@ -38,12 +38,10 @@ namespace PracticeAutoMail
             }
 
         }
-
         private void btnPWGenerator_Click(object sender, EventArgs e)
         {
             PasswordGenerate();
         }
-
         private void btnCreateMailReset_Click(object sender, EventArgs e)
         {
             foreach (var item in listOfUser)
@@ -52,7 +50,6 @@ namespace PracticeAutoMail
                 task.Start();
             }
         }
-
         private void btnTemplateReset_Click(object sender, EventArgs e)
         {
             var sb = new StringBuilder();
@@ -179,8 +176,7 @@ namespace PracticeAutoMail
             newMailTemplate.Body = sb.ToString();
 
             newMailTemplate.Display(true);
-        }
-        
+        }        
         private void txtPwReset_TextChanged(object sender, EventArgs e)
         {
             txtPwReset.SelectAll();

@@ -88,7 +88,6 @@ namespace PracticeAutoMail
         {
             SendMail();
         }
-
         private void btnScriptSet_Click(object sender, EventArgs e)
         {
             if (txtPSscript.Text != "")
@@ -100,7 +99,6 @@ namespace PracticeAutoMail
                 Console.WriteLine("The textBox of the script is empty!");
             }
         }
-
         private void btnScriptGet_Click(object sender, EventArgs e)
         {
             string getScriptValueStart = txtPSscript.Text.Substring(0, 20) + "-Properties EmployeeNumber";
@@ -115,13 +113,11 @@ namespace PracticeAutoMail
                 Console.WriteLine("The textBox of the script is empty!");
             }
         }
-
         private void btnFirstGroup_Click(object sender, EventArgs e)
         {
             string group = "SH01-Proxy-Users-L";
             System.Windows.Forms.Clipboard.SetText(group);
         }
-
         private void btnSecondGroup_Click(object sender, EventArgs e)
         {
             string group = "SH01-TS-Users-L";
@@ -186,8 +182,7 @@ namespace PracticeAutoMail
             txtFName.Clear();
             txtLName.Clear();
             txtPSscript.Clear();
-        }
-        
+        }        
         public void CreateTemplate(User.UserAccount user)
         {
             Microsoft.Office.Interop.Outlook.Application newMail = new Microsoft.Office.Interop.Outlook.Application();
@@ -234,7 +229,6 @@ namespace PracticeAutoMail
             newMailTemplate.Display(true);
 
         }        
-
         private void PasswordGenerate()
         {
             if (txtAcc.Text != string.Empty)

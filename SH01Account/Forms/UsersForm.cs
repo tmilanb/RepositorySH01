@@ -288,17 +288,14 @@ namespace PracticeAutoMail
         {
             txtPw.SelectAll();
         }
-
         private void txtMail_DoubleClick(object sender, EventArgs e)
         {
             txtMail.SelectAll();
         }
-
         private void txtDName_DoubleClick(object sender, EventArgs e)
         {
             txtDName.SelectAll();
         }
-
         private void txtDescription_DoubleClick(object sender, EventArgs e)
         {
             txtDescription.SelectAll();
