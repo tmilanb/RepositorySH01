@@ -8,7 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows.Forms;
 using System.Web.Security;
-
+using System.Threading.Tasks;
 
 namespace PracticeAutoMail
 {
@@ -19,7 +19,7 @@ namespace PracticeAutoMail
             InitializeComponent();
         }
 
-        //////Button Actions
+        // Button Actions
         private void btnCheck_Click(object sender, EventArgs e)
         {            
             FindUser();
@@ -27,7 +27,8 @@ namespace PracticeAutoMail
         }
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            CreateTemplate(new User.UserAccount(txtLName.Text + " " + txtFName.Text, txtMail.Text, txtAcc.Text, txtPw.Text));
+            Task tOne = new Task(() => CreateTemplate(new User.UserAccount(txtLName.Text + " " + txtFName.Text, txtMail.Text, txtAcc.Text, txtPw.Text)));
+            tOne.Start();
         }
         private void btnLDTemplate_Click(object sender, EventArgs e)
         {
@@ -82,7 +83,7 @@ namespace PracticeAutoMail
             PasswordGenerate();
         }
 
-        //Buttons for copying of the content of the textbox
+        // Buttons for copying of the content of the textbox
         private void btnSend_Click(object sender, EventArgs e)
         {
             SendMail();
@@ -127,7 +128,7 @@ namespace PracticeAutoMail
             System.Windows.Forms.Clipboard.SetText(group);
         }
 
-        ///////Methods
+        // Methods
         public void FindUser()
         {
             if (txtMail.Text != "")
@@ -186,6 +187,7 @@ namespace PracticeAutoMail
             txtLName.Clear();
             txtPSscript.Clear();
         }
+        
         public void CreateTemplate(User.UserAccount user)
         {
             Microsoft.Office.Interop.Outlook.Application newMail = new Microsoft.Office.Interop.Outlook.Application();
@@ -264,7 +266,7 @@ namespace PracticeAutoMail
 
         }
 
-        /////TextBoxesClick
+        // TextBoxesClick
         private void txtMail_DoubleClick(object sender, EventArgs e)
         {
             txtMail.SelectAll();
@@ -282,7 +284,7 @@ namespace PracticeAutoMail
             txtDescription.SelectAll();
         }
 
-        ///////Under constructions
+        // Under constructions
         public void SendMailWithoutEncrypt()
         {
             //try LEt's try something else. 

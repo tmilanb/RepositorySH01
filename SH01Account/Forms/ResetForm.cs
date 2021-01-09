@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.DirectoryServices.AccountManagement;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Security;
 using System.Windows.Forms;
 
@@ -10,7 +11,7 @@ namespace PracticeAutoMail
 {
     public partial class ResetForm : Form
     {
-        ////List of the users
+        // List of the users
         List<UserAccount> listOfUser = new List<UserAccount>();
 
         public ResetForm()
@@ -18,7 +19,7 @@ namespace PracticeAutoMail
             InitializeComponent();
         }
 
-        ////Button Actions
+        // Button Actions
         private void btnAddReset_Click(object sender, EventArgs e)
         {
             FindUser();
@@ -47,7 +48,8 @@ namespace PracticeAutoMail
         {
             foreach (var item in listOfUser)
             {
-                CreateTemplate(item);
+                Task task = new Task(() => CreateTemplate(item));
+                task.Start();
             }
         }
 
@@ -76,7 +78,7 @@ namespace PracticeAutoMail
             System.Windows.Forms.Clipboard.SetText(sb.ToString());
         }
 
-        ////Methods
+        // Methods
         public void FindUser()
         {
             if (txtMailReset.Text != "")

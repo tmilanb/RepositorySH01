@@ -6,12 +6,13 @@ using System.DirectoryServices.AccountManagement;
 using System.Text;
 using System.Windows.Forms;
 using System.Web.Security;
+using System.Threading.Tasks;
 
 namespace PracticeAutoMail
 {
     public partial class UsersForm : Form
     {
-        //List of the users
+        // List of the users
         List<UserAccount> listOfUser = new List<UserAccount>();
 
         public UsersForm()
@@ -19,7 +20,7 @@ namespace PracticeAutoMail
             InitializeComponent();
         }
 
-        //////Button Actions
+        // Button Actions
         private void btnCheck_Click(object sender, EventArgs e)
         {
             FindUser();
@@ -45,7 +46,8 @@ namespace PracticeAutoMail
         {
             foreach (var item in listOfUser)
             {
-                CreateTemplate(item);
+                Task task = new Task(() => CreateTemplate(item));
+                task.Start();
             }            
         }
         private void btnPWGenerator_Click(object sender, EventArgs e)
@@ -53,7 +55,7 @@ namespace PracticeAutoMail
             PasswordGenerate();
         }
 
-        //Buttons for copying of the content of the textbox
+        // Buttons for copying of the content of the textbox
         private void btnLDTemplate_Click(object sender, EventArgs e)
         {
             var sb = new StringBuilder();
@@ -143,7 +145,7 @@ namespace PracticeAutoMail
         }
 
 
-        //////Methods:      
+        // Methods:      
         private void PasswordGenerate()
         {
             if (txtAcc.Text != string.Empty)
@@ -281,7 +283,7 @@ namespace PracticeAutoMail
         }
 
 
-        /////Select All Text
+        // Select the whole text of the textBox
         private void txtPw_DoubleClick(object sender, EventArgs e)
         {
             txtPw.SelectAll();
